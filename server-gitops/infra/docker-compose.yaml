@@ -10,34 +10,27 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: securepassword
       POSTGRES_DB: mydb
+    ports:
+      - 5432:5432
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     networks:
       - bootstrap_proxy
-    labels:
-      - traefik.enable=true
-      - traefik.tcp.routers.postgres.rule=HostSNI(`postgres.atselvan.com`)
-      - traefik.tcp.routers.postgres.entrypoints=db-postgres
-      - traefik.tcp.services.postgres.loadbalancer.server.port=5432
-
 
   # -----------------------------------------------
   # Redis (with Streams support)
   # -----------------------------------------------
   redis:
-    image: redis:8
+    image: redis:8.4.0
     container_name: redis
     restart: always
     command: ["redis-server", "--save", "", "--appendonly", "yes"]
     volumes:
       - ./data/redis:/data
+    ports:
+      - 6379:6379
     networks:
       - bootstrap_proxy
-    labels:
-      - traefik.enable=true
-      - traefik.tcp.routers.redis.rule=HostSNI(`redis.atselvan.com`)
-      - traefik.tcp.routers.redis.entrypoints=db-redis
-      - traefik.tcp.services.redis.loadbalancer.server.port=6379
 
 networks:
   bootstrap_proxy:
