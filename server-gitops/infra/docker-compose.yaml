@@ -1,0 +1,44 @@
+services:
+  # -----------------------------------------------
+  # PostgreSQL Database
+  # -----------------------------------------------
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: securepassword
+      POSTGRES_DB: mydb
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.tcp.routers.postgres.rule=HostSNI(`postgres.macserver.atselvan.com`)
+      - traefik.tcp.routers.postgres.entrypoints=db-postgres
+      - traefik.tcp.services.postgres.loadbalancer.server.port=5432
+
+
+  # -----------------------------------------------
+  # Redis (with Streams support)
+  # -----------------------------------------------
+  redis:
+    image: redis:8
+    container_name: redis
+    restart: always
+    command: ["redis-server", "--save", "", "--appendonly", "yes"]
+    volumes:
+      - ./data/redis:/data
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.tcp.routers.redis.rule=HostSNI(`redis.macserver.atselvan.com`)
+      - traefik.tcp.routers.redis.entrypoints=db-redis
+      - traefik.tcp.services.redis.loadbalancer.server.port=6379
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,65 @@
+
+services:
+  # -----------------------------------------------
+  # Traefik - Reverse Proxy / HTTPS
+  # -----------------------------------------------
+  traefik:
+    image: traefik:v3.6.2
+    container_name: traefik
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${HOME}/Data/traefik:/letsencrypt
+    command:
+      - --api.dashboard=true
+      - --log.level=DEBUG
+      - --accesslog=true
+      - --providers.docker.network=proxy
+      - --providers.docker.exposedByDefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entryPoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.db-postgres.address=:5432/tcp
+      - --entrypoints.db-redis.address=:6379/tcp
+      - --entrypoints.websecure.asDefault=true
+      - --entrypoints.websecure.http.tls.certresolver=myresolver
+      - --certificatesresolvers.myresolver.acme.tlschallenge=true
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dashboard.rule=Host(`traefik.atselvan.com`)
+      - traefik.http.routers.dashboard.service=api@internal
+      - traefik.http.routers.dashboard.entrypoints=websecure
+      - traefik.http.routers.dashboard.tls=true
+    networks:
+      - proxy
+
+  # -----------------------------------------------
+  # Portainer EE LTS - container management UI
+  # -----------------------------------------------
+  portainer:
+    image: portainer/portainer-ee:lts
+    container_name: portainer
+    restart: always
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9443:9443"  # HTTPS UI
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${HOME}/Data/docker/portainer:/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.portainer.rule=Host(`portainer.atselvan.com`)
+      - traefik.http.routers.portainer.entrypoints=websecure
+      - traefik.http.routers.portainer.tls=true
+      - traefik.http.services.portainer.loadbalancer.server.port=9443
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    driver: bridge
