@@ -16,7 +16,7 @@ services:
       - bootstrap_proxy
     labels:
       - traefik.enable=true
-      - traefik.tcp.routers.postgres.rule=HostSNI(`postgres.macserver.atselvan.com`)
+      - traefik.tcp.routers.postgres.rule=HostSNI(`postgres.atselvan.com`)
       - traefik.tcp.routers.postgres.entrypoints=db-postgres
       - traefik.tcp.services.postgres.loadbalancer.server.port=5432
 
@@ -35,7 +35,7 @@ services:
       - bootstrap_proxy
     labels:
       - traefik.enable=true
-      - traefik.tcp.routers.redis.rule=HostSNI(`redis.macserver.atselvan.com`)
+      - traefik.tcp.routers.redis.rule=HostSNI(`redis.atselvan.com`)
       - traefik.tcp.routers.redis.entrypoints=db-redis
       - traefik.tcp.services.redis.loadbalancer.server.port=6379
 

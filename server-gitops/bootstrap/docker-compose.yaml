@@ -46,8 +46,6 @@ services:
     container_name: portainer
     restart: always
     command: -H unix:///var/run/docker.sock
-    ports:
-      - "9443:9443"  # HTTPS UI
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${HOME}/Data/docker/portainer:/data
@@ -56,7 +54,7 @@ services:
       - traefik.http.routers.portainer.rule=Host(`portainer.atselvan.com`)
       - traefik.http.routers.portainer.entrypoints=websecure
       - traefik.http.routers.portainer.tls=true
-      - traefik.http.services.portainer.loadbalancer.server.port=9443
+      - traefik.http.services.portainer.loadbalancer.server.port=9000
     networks:
       - proxy
 
