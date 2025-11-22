@@ -13,7 +13,7 @@ services:
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     networks:
-      - proxy
+      - bootstrap_proxy
     labels:
       - traefik.enable=true
       - traefik.tcp.routers.postgres.rule=HostSNI(`postgres.macserver.atselvan.com`)
@@ -32,7 +32,7 @@ services:
     volumes:
       - ./data/redis:/data
     networks:
-      - proxy
+      - bootstrap_proxy
     labels:
       - traefik.enable=true
       - traefik.tcp.routers.redis.rule=HostSNI(`redis.macserver.atselvan.com`)
@@ -40,5 +40,5 @@ services:
       - traefik.tcp.services.redis.loadbalancer.server.port=6379
 
 networks:
-  proxy:
+  bootstrap_proxy:
     external: true
