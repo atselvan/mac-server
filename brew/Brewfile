@@ -1,3 +1,7 @@
+# Tap's
+
+# Brew's
+
 brew "git"
 brew "jj"
 brew "python@3.14"
@@ -8,6 +12,9 @@ brew "zsh-syntax-highlighting"
 brew "colima"
 brew "docker"
 brew "docker-compose"
+brew "mas"
+
+# Cask's
 
 cask "anki"
 cask "ghostty"
@@ -17,3 +24,7 @@ cask "visual-studio-code"
 cask "tailscale-app"
 cask "syncthing-app"
 cask "aldente"
+
+# MAC Store Apps
+
+mas "Amphetamine", id: 937984704
