@@ -1,0 +1,116 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- Server Monitoring:
+    - CPU Usage:
+            widget:
+                type: glances
+                url: {{HOMEPAGE_VAR_GLANCES_URL}}
+                username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
+                password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
+                version: 4
+                metric: cpu
+
+    - Memory Usage:
+            widget:
+                type: glances
+                url: {{HOMEPAGE_VAR_GLANCES_URL}}
+                username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
+                password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
+                version: 4
+                metric: memory
+
+    - Network Usage:
+            widget:
+                type: glances
+                url: {{HOMEPAGE_VAR_GLANCES_URL}}
+                username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
+                password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
+                version: 4
+                metric: network:en0
+
+    - Disk Usage:
+            widget:
+                type: glances
+                url: {{HOMEPAGE_VAR_GLANCES_URL}}
+                username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
+                password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
+                version: 4
+                metric: disk:disk0
+
+- Management:
+    - Proxy:
+        icon: nginx-proxy-manager.png
+        description: Reverse Proxy
+        href: {{HOMEPAGE_VAR_NPM_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_NPM_URL}}
+        container: proxy
+        widget:
+            type: npm
+            url: {{HOMEPAGE_VAR_NPM_URL}}
+            username: {{HOMEPAGE_VAR_NPM_USERNAME}}
+            password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
+
+    - Portainer:
+        icon: portainer.png
+        href: {{HOMEPAGE_VAR_PORTAINER_URL}}
+        description: Container management
+        siteMonitor: {{HOMEPAGE_VAR_PORTAINER_URL}}
+        container: portainer
+        widget:
+            type: portainer
+            url: {{HOMEPAGE_VAR_PORTAINER_URL}}
+            env: 1
+            kubernetes: false
+            key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
+
+    - Synology:
+        icon: synology.png
+        description: Synology NAS
+        href: {{HOMEPAGE_VAR_NAS_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_NAS_URL}}
+        widget:
+          type: diskstation
+          url: {{HOMEPAGE_VAR_NAS_URL}}
+          username: {{HOMEPAGE_VAR_NAS_USERNAME}}
+          password: {{HOMEPAGE_VAR_NAS_PASSWORD}}
+          fields: 
+            - uptime
+            - resources.cpu
+            - resources.mem
+
+    - Glances: 
+        icon: glances.png
+        href: {{HOMEPAGE_VAR_GLANCES_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_GLANCES_URL}}
+        widget:
+            type: glances
+            url: {{HOMEPAGE_VAR_GLANCES_URL}}
+            username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
+            password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
+            version: 4
+            metric: info
+
+    - Syncthing:
+        icon: syncthing.png
+        description: Keep data in sync
+        href: {{HOMEPAGE_VAR_SYNCTHING_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_GLANCES_URL}}
+
+- Applications:
+    - Jellyfin:
+        icon: jellyfin.png
+        description: Jellyfin media server
+        href: {{HOMEPAGE_VAR_JELLYFIN_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_JELLYFIN_URL}}
+        widget:
+            type: jellyfin
+            url: {{HOMEPAGE_VAR_JELLYFIN_URL}}
+            key: {{HOMEPAGE_VAR_JELLYFIN_API_KEY}}
+            enableBlocks: true 
+            enableNowPlaying: false 
+            enableUser: true 
+            enableMediaControl: false 
+            showEpisodeNumber: true 
+            expandOneStreamToTwoRows: false

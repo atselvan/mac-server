@@ -1,0 +1,26 @@
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: always
+    dns:
+      - 1.1.1.1
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config:/app/config
+      - ./images:/app/public/images
+      - ${HOME}/data/homepage/logs:/var/homepage/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: home.atselvan.com
+    env_file:
+      - .env
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+    

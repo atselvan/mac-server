@@ -1,0 +1,39 @@
+---
+- logo:
+    icon: /images/logo.png
+
+- greeting:
+    text_size: xl
+    text: AllanRosewood
+
+- glances:
+    url: {{HOMEPAGE_VAR_GLANCES_URL}}
+    username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
+    password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
+    version: 4
+    cpu: true
+    mem: true 
+    uptime: true 
+    disk: /
+    diskUnits: bytes
+    expanded: false
+
+- openmeteo:
+    label: Amsterdam
+    timezone: Europe/Amsterdam
+    units: metric # or imperial
+    cache: 5 # minutes
+    format:
+      maximumFractionDigits: 1
+
+- datetime:
+    text_size: 4xl
+    format:
+        timeStyle: short
+        hour12: false
+
+- datetime:
+    text_size: md
+    format:
+        dateStyle: long
+        hour12: false

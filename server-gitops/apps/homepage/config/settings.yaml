@@ -1,0 +1,33 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings
+
+title: {{HOMEPAGE_VAR_TITLE}}
+startUrl: https://home.atselvan.com
+logpath: /var/homepage
+theme: dark
+color: neutral
+favicon: /images/favicon.ico
+background: 
+  image: /images/background.jpg
+  #blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
+  #saturate: 50 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+  #brightness: 75 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+  opacity: 50 # 0-100
+cardBlur: xl
+headerStyle: clean
+
+layout:
+  Server Monitoring:
+    style: row
+    columns: 4
+
+  Management:
+    style: row
+    columns: 4
+
+  Applications:
+    style: row
+    columns: 4
+
+providers:
