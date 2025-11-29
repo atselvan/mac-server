@@ -96,12 +96,11 @@
         icon: uptime-kuma.png
         href: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
         siteMonitor: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
-        container: uptime-kuma
+        container: uptimekuma
         widget:
             type: uptime-kuma
             url: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
-            username: {{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}
-            password: {{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}
+            slug: mac-server
 
     - Syncthing:
         icon: syncthing.png
