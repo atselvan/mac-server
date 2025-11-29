@@ -11,3 +11,7 @@ certs/
 # Syncthing
 .stfolder
 .stignore
+
+# ignored for now
+server-gitops/apps/monitoring
+
