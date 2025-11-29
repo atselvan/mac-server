@@ -1,0 +1,14 @@
+services:
+  cloudflare-ddns:
+    image: favonia/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    network_mode: host
+    restart: always
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [ all ]
+    security_opt: [ no-new-privileges:true ]
+    environment:
+      - PROXIED=true
+    env_file:
+      - .env
