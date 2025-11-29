@@ -92,6 +92,17 @@
             version: 4
             metric: info
 
+    - Uptime:
+        icon: uptime-kuma.png
+        href: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
+        container: uptime-kuma
+        widget:
+            type: uptime-kuma
+            url: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
+            username: {{HOMEPAGE_VAR_UPTIME_KUMA_USERNAME}}
+            password: {{HOMEPAGE_VAR_UPTIME_KUMA_PASSWORD}}
+
     - Syncthing:
         icon: syncthing.png
         description: Keep data in sync
