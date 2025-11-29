@@ -1,4 +1,4 @@
-.PHONY: help bundle bootstrap glances-init glances-load glances-start glances-stop glances-unload glances-logs
+.PHONY: help bundle bootstrap colima glances-init glances-load glances-start glances-stop glances-unload glances-logs
 
 BREW_DIR := brew
 BREWFILE := $(BREW_DIR)/Brewfile
@@ -14,6 +14,10 @@ help: ## Show this help
 bundle: ## Install Brewfile dependencies
 	@echo "Running brew bundle from $(BREWFILE)"
 	@brew bundle -v --file=$(BREWFILE)
+
+colima: ## Start Colima
+	@echo "Running colima install"
+	@colima start --cpu 2 --memory 8 --disk 100
 
 bootstrap: ## Bootstrap the server (proxy network, docker-compose)
 	@echo "Creating proxy network if it does not exist..."
