@@ -1,44 +1,38 @@
 
 services:
-  # -----------------------------------------------
-  # Traefik - Reverse Proxy / HTTPS
-  # -----------------------------------------------
-  traefik:
-    image: traefik:v3.6.2
-    container_name: traefik
+  proxy-db:
+    image: postgres:17
+    container_name: proxy-db
     restart: always
-    ports:
-      - "80:80"
-      - "443:443"
+    env_file:
+      - .env
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ${HOME}/Data/traefik:/letsencrypt
-    command:
-      - --api.dashboard=true
-      - --log.level=DEBUG
-      - --accesslog=true
-      - --providers.docker.network=proxy
-      - --providers.docker.exposedByDefault=false
-      - --entrypoints.web.address=:80
-      - --entrypoints.web.http.redirections.entrypoint.to=websecure
-      - --entryPoints.web.http.redirections.entrypoint.scheme=https
-      - --entrypoints.websecure.address=:443
-      - --entrypoints.websecure.asDefault=true
-      - --entrypoints.websecure.http.tls.certresolver=myresolver
-      - --certificatesresolvers.myresolver.acme.tlschallenge=true
-      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.dashboard.rule=Host(`traefik.atselvan.com`)
-      - traefik.http.routers.dashboard.service=api@internal
-      - traefik.http.routers.dashboard.entrypoints=websecure
-      - traefik.http.routers.dashboard.tls=true
+      - ${HOME}/Data/proxy-db:/var/lib/postgresql/data
     networks:
       - proxy
 
-  # -----------------------------------------------
-  # Portainer EE LTS - container management UI
-  # -----------------------------------------------
+  proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxy
+    restart: unless-stopped
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    environment:
+      TZ: "Europe/Amsterdam"
+    env_file:
+      - .env
+    volumes:
+      - ${HOME}/Data/proxy/data:/data
+      - ${HOME}/Data/proxy/letsencrypt:/etc/letsencrypt
+    networks:
+      - proxy
+    depends_on:
+      - proxy-db
+
   portainer:
     image: portainer/portainer-ee:lts
     container_name: portainer
@@ -47,15 +41,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${HOME}/Data/portainer:/data
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.portainer.rule=Host(`portainer.atselvan.com`)
-      - traefik.http.routers.portainer.entrypoints=websecure
-      - traefik.http.routers.portainer.tls=true
-      - traefik.http.services.portainer.loadbalancer.server.port=9000
+    ports:
+      - 9000:9000
     networks:
       - proxy
 
 networks:
   proxy:
-    driver: bridge
+    external: true
