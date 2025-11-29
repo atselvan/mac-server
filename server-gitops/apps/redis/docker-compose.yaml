@@ -1,0 +1,18 @@
+services:
+  redis:
+    image: redis:8.4.0
+    container_name: redis
+    restart: always
+    env_file:
+      - .env
+    command: ["redis-server", "--save", "", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD}"]
+    volumes:
+      - ${HOME}/Data/redis:/data
+    ports:
+      - 6379:6379
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
