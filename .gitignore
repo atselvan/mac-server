@@ -1,0 +1,13 @@
+# Ignore
+*.env
+certs/
+
+# IDE
+.vscode
+
+# MacOs
+.DS_Store
+
+# Syncthing
+.stfolder
+.stignore
