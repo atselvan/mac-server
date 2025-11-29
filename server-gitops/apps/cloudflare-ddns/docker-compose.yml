@@ -11,4 +11,4 @@ services:
     environment:
       - PROXIED=true
     env_file:
-      - stack.env
+      - .env
