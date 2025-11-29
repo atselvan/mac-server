@@ -3,7 +3,7 @@
 # https://gethomepage.dev/latest/configs/settings
 
 title: {{HOMEPAGE_VAR_TITLE}}
-startUrl: https://home.atselvan.com
+startUrl: {{HOMEPAGE_VAR_START_URL}}
 logpath: /var/homepage
 theme: dark
 color: neutral

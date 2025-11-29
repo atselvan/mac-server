@@ -4,7 +4,7 @@
 
 - greeting:
     text_size: xl
-    text: AllanRosewood
+    text: {{HOMEPAGE_VAR_TITLE}}
 
 - glances:
     url: {{HOMEPAGE_VAR_GLANCES_URL}}
@@ -19,8 +19,8 @@
     expanded: false
 
 - openmeteo:
-    label: Amsterdam
-    timezone: Europe/Amsterdam
+    label: {{HOMEPAGE_VAR_LOCATION}}
+    timezone: {{HOMEPAGE_VAR_TIMEZONE}}
     units: metric # or imperial
     cache: 5 # minutes
     format:

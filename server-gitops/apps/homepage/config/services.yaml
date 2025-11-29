@@ -54,8 +54,8 @@
 
     - Portainer:
         icon: portainer.png
-        href: {{HOMEPAGE_VAR_PORTAINER_URL}}
         description: Container management
+        href: {{HOMEPAGE_VAR_PORTAINER_URL}}
         siteMonitor: {{HOMEPAGE_VAR_PORTAINER_URL}}
         container: portainer
         widget:
