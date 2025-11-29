@@ -96,9 +96,9 @@
         icon: uptime-kuma.png
         href: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
         siteMonitor: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
-        container: uptimekuma
+        container: uptime-kuma
         widget:
-            type: uptime-kuma
+            type: uptimekuma
             url: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
             slug: mac-server
 
