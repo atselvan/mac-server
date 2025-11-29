@@ -1,0 +1,23 @@
+{
+  "version": 3,
+  "port": 8080,
+  "name": "krakend-minimal",
+  "timeout": "3s",
+  "endpoints": [
+    {
+      "endpoint": "/api/hello",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/get",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://httpbin.org"
+          ]
+        }
+      ]
+    }
+  ]
+}
