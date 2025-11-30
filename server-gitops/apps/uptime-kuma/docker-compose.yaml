@@ -6,7 +6,7 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ${HOME}/data/uptime-kuma:/app/data
+      - ${UPTIME_KUMA_DATA_LOCATION}:/app/data
     environment:
       - TZ=Europe/Amsterdam
       - UMASK=0022
