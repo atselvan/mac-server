@@ -13,4 +13,4 @@ certs/
 .stignore
 
 # ignored for now
-server-gitops/apps/monitoring
+stacks/apps/monitoring
