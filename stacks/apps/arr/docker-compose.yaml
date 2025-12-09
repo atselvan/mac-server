@@ -36,7 +36,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ${SONARR_DATA_PATH}:/config
-      - ${SONARR_MEDIA_PATH}:/movies
+      - ${SONARR_MEDIA_PATH}:/tv-shows
       - ${SONARR_DOWNLOAD_PATH}:/downloads
     ports:
       - 8989:8989
