@@ -10,6 +10,9 @@ services:
       - ${PROWLARR_DATA_PATH}:/config
     ports:
       - 9696:9696
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     restart: unless-stopped
 
   radarr:
