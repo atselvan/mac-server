@@ -2,13 +2,18 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/bookmarks
 
-- Bookmarks:
+- Development:
     - Github:
         - icon: github.png
-          href: https://github.com/atselvan
+          href: {{HOMEPAGE_VAR_GITHUB_URL}}
+    - Cloudflare:
+        - icon: cloudflare.png
+          href: {{HOMEPAGE_VAR_CLOUDFLARE_URL}}
+
+- Social:
     - Reddit:
         - icon: reddit.png
-          href: https://reddit.com/
-    - Namecheap:
-        - icon: namecheap.png
-          href: https://ap.www.namecheap.com/Domains/DomainControlPanel/atselvan.com/advancedns
+          href: {{HOMEPAGE_VAR_REDDIT_URL}}
+    - Discord:
+        - icon: discord.png
+          href: {{HOMEPAGE_VAR_DISCORD_URL}}

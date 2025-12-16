@@ -39,7 +39,7 @@
                 version: 4
                 metric: disk:disk0
 
-- Management:
+- Server Management Applications:
     - Proxy:
         icon: nginx-proxy-manager.png
         description: Reverse Proxy
@@ -102,11 +102,17 @@
             url: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
             slug: mac-server
 
-    - Syncthing:
+    - Syncthing MacServer:
         icon: syncthing.png
         description: Keep data in sync
-        href: {{HOMEPAGE_VAR_SYNCTHING_URL}}
-        siteMonitor: {{HOMEPAGE_VAR_GLANCES_URL}}
+        href: {{HOMEPAGE_VAR_SYNCTHING_MACSERVER_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SYNCTHING_MACSERVER_URL}}
+
+    - Syncthing DS216:
+        icon: syncthing.png
+        description: Keep data in sync
+        href: {{HOMEPAGE_VAR_SYNCTHING_DS216_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SYNCTHING_DS216_URL}}
 
 - Applications:
     - Jellyfin:
@@ -124,3 +130,77 @@
             enableMediaControl: false 
             showEpisodeNumber: true 
             expandOneStreamToTwoRows: false
+    
+    - Immich:
+        icon: immich.png
+        description: Immich photo and video gallery
+        href: {{HOMEPAGE_VAR_IMMICH_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_IMMICH_URL}}
+        widget:
+            type: immich
+            url: {{HOMEPAGE_VAR_IMMICH_URL}}
+            key: {{HOMEPAGE_VAR_IMMICH_API_KEY}}
+            version: 2
+
+    - Actual Budget:
+        icon: actual-budget.png
+        description: Actual budget
+        href: {{HOMEPAGE_VAR_ACTUALBUDGET_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_ACTUALBUDGET_URL}}
+
+- Media Management Applications:
+    - Jellyseerr:
+        icon: jellyseerr.png
+        description: Jellyseerr media downloader
+        href: {{HOMEPAGE_VAR_JELLYSEERR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_JELLYSEERR_URL}}
+        widget:
+            type: jellyseerr
+            url: {{HOMEPAGE_VAR_JELLYSEERR_URL}}
+            key: {{HOMEPAGE_VAR_JELLYSEERR_API_KEY}}
+
+    - Prowlarr:
+        icon: prowlarr.png
+        description: Prowlarr media downloader
+        href: {{HOMEPAGE_VAR_PROWLARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PROWLARR_URL}}
+        widget:
+            type: prowlarr
+            url: {{HOMEPAGE_VAR_PROWLARR_URL}}
+            key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
+
+    - Bazarr:
+        icon: bazarr.png
+        description: Bazarr media downloader
+        href: {{HOMEPAGE_VAR_BAZARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_BAZARR_URL}}
+        widget:
+            type: bazarr
+            url: {{HOMEPAGE_VAR_BAZARR_URL}}
+            key: {{HOMEPAGE_VAR_BAZARR_API_KEY}}
+
+    - Radarr:
+        icon: radarr.png
+        description: Radarr media downloader
+        href: {{HOMEPAGE_VAR_RADARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_RADARR_URL}}
+        widget:
+            type: radarr
+            url: {{HOMEPAGE_VAR_RADARR_URL}}
+            key: {{HOMEPAGE_VAR_RADARR_API_KEY}}
+
+    - Sonarr:
+        icon: sonarr.png
+        description: Sonarr media downloader
+        href: {{HOMEPAGE_VAR_SONARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SONARR_URL}}
+        widget:
+            type: sonarr
+            url: {{HOMEPAGE_VAR_SONARR_URL}}
+            key: {{HOMEPAGE_VAR_SONARR_API_KEY}}
+
+    - QbitTorrent:
+        icon: qbittorrent.png
+        description: QbitTorrent media downloader
+        href: {{HOMEPAGE_VAR_QBITTORRENT_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_QBITTORRENT_URL}}

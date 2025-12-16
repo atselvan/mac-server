@@ -20,14 +20,19 @@ headerStyle: clean
 layout:
   Server Monitoring:
     style: row
-    columns: 4
+    columns: 3
 
-  Management:
+  Server Management Applications:
     style: row
-    columns: 4
+    columns: 3
 
   Applications:
     style: row
-    columns: 4
+    columns: 3
+
+  Media Management Applications:
+    style: row
+    columns: 3
+  
 
 providers:

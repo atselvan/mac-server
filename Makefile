@@ -1,4 +1,4 @@
-.PHONY: help bundle bootstrap colima glances-init glances-load glances-start glances-stop glances-unload glances-logs
+.PHONY: help bundle bootstrap colima glances-init glances-load glances-start glances-stop glances-unload glances-logs homepage-up homepage-down homepage-logs
 
 BREW_DIR := brew
 BREWFILE := $(BREW_DIR)/Brewfile
@@ -7,6 +7,9 @@ BOOTSTRAP_COMPOSE_FILE := server-gitops/bootstrap/docker-compose.yaml
 GLANCES_PLIST_PATH := $(HOME)/Library/LaunchAgents/net.glances.agent.plist
 GLANCES_LOG_DIR := $(HOME)/Data/glances
 GLANCES_CONFIG_SRC := ./config/glances/net.glances.agent.plist
+
+HOMEPAGE_DIR := stacks/apps/homepage
+HOMEPAGE_ENV := $(HOMEPAGE_DIR)/.env
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -49,3 +52,20 @@ glances-unload: ## Unload Glances LaunchAgent
 glances-logs: ## Tail Glances logs
 	@echo "Tailing glances logs..."
 	tail -f $(GLANCES_LOG_DIR)/glances.log
+
+homepage-up: ## Start Homepage app with env vars
+	@echo "Starting Homepage app..."
+	@if [ ! -f $(HOMEPAGE_ENV) ]; then \
+		echo "Error: .env file not found at $(HOMEPAGE_ENV)"; \
+		exit 1; \
+	fi
+	@set -a && . $(HOMEPAGE_ENV) && set +a && cd $(HOMEPAGE_DIR) && docker compose up -d
+	@echo "Homepage started successfully at http://localhost:3000"
+
+homepage-down: ## Stop Homepage app
+	@echo "Stopping Homepage app..."
+	@cd $(HOMEPAGE_DIR) && docker compose down
+
+homepage-logs: ## Tail Homepage logs
+	@echo "Tailing Homepage logs..."
+	@cd $(HOMEPAGE_DIR) && docker compose logs -f
