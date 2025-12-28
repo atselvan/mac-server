@@ -1,4 +1,3 @@
-```markdown
 # Home Server
 
 This repository contains Docker stacks used to run a personal home server. Below is a table of the application stacks with short descriptions and links to the upstream project pages.

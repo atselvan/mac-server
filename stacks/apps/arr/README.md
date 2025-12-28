@@ -1,4 +1,3 @@
-```markdown
 # arr
 
 This stack contains a set of media automation and downloader services. Each service has its own environment variables; the compose file references host paths for config and data.
