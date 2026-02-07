@@ -20,9 +20,13 @@ headerStyle: clean
 layout:
   Server Monitoring:
     style: row
-    columns: 3
+    columns: 4
 
   Server Management Applications:
+    style: row
+    columns: 3
+
+  Data Backup Services:
     style: row
     columns: 3
 

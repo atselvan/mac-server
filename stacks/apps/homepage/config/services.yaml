@@ -102,6 +102,7 @@
             url: {{HOMEPAGE_VAR_UPTIME_KUMA_URL}}
             slug: mac-server
 
+- Data Backup Services:
     - Syncthing MacServer:
         icon: syncthing.png
         description: Keep data in sync
