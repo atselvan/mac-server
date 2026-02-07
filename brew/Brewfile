@@ -24,7 +24,6 @@ cask "rectangle"
 cask "visual-studio-code"
 cask "tailscale-app"
 cask "syncthing-app"
-cask "aldente"
 cask "jellyfin"
 cask "connectmenow"
 

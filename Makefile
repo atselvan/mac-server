@@ -20,7 +20,8 @@ bundle: ## Install Brewfile dependencies
 
 colima: ## Start Colima
 	@echo "Running colima install"
-	@colima start --cpu 2 --memory 8 --disk 100
+	@cp config/colima/colima.yaml ~/.colima/default/colima.yaml
+	@colima start
 
 bootstrap: ## Bootstrap the server (proxy network, docker-compose)
 	@echo "Creating proxy network if it does not exist..."
